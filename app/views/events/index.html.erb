@@ -6,7 +6,9 @@
     <th>Id</th>
     <th>Nazwa artysty</th>
     <th>Data wydarzenia</th>
+    <th>Dla dorosłych</th>
     <th>Ceny</th>
+    <th>Liczba biletów</th>
   </tr>
   </thead>
 
@@ -16,7 +18,9 @@
         <td><%= event.id %></td>
         <td><%= event.artist %></td>
         <td><%= event.event_date %></td>
+        <td><%= event.for_adults %></td>
         <td><%= event.price_low %>-<%= event.price_high %></td>
+        <td><%= event.tickets_no %></td>
       </tr>
   <% end %>
   </tbody>

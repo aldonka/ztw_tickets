@@ -17,6 +17,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :for_adults %>
+      <%= f.check_box :for_adults, {}, true, false %>
+    </div>
+
+    <div class="field">
       <%= f.label :event_date %>
       <%= f.text_field :event_date %>
     </div>
@@ -29,6 +34,11 @@
     <div class="field">
       <%= f.label :price_high %>
       <%= f.text_field :price_high %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tickets_no %>
+      <%= f.text_field :tickets_no %>
     </div>
 
     <div class="field">
