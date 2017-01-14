@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bilety</h1>
+
+<table class="table table-responsive">
+  <thead>
+    <tr>
+      <th>Nazwa</th>
+      <th>Wydarzenie</th>
+      <th>Numer siedzenia</th>
+      <th>Adres</th>
+      <th>Cena</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.name %></td>
+        <td><%= ticket.event_id %></td>
+        <td><%= ticket.seat_id_seq %></td>
+        <td><%= ticket.address %></td>
+        <td><%= ticket.price %></td>
+        <td><%= ticket.email_address %></td>
+        <td><%= ticket.phone %></td>
+        <td>
+          <span class="btn-group">
+            <span class="btn btn-default"><%= link_to 'Show', ticket %></span>
+            <span class="btn btn-warning"><%= link_to 'Edit', edit_ticket_path(ticket) %></span>
+            <span class="btn btn-danger"><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          </span>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ticket', new_ticket_path %>

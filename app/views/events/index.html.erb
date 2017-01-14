@@ -1,0 +1,26 @@
+<h1>Wydarzenia</h1>
+
+<table class="table table-responsive">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Nazwa artysty</th>
+    <th>Data wydarzenia</th>
+    <th>Ceny</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @events.each do |event| %>
+      <tr>
+        <td><%= event.id %></td>
+        <td><%= event.artist %></td>
+        <td><%= event.event_date %></td>
+        <td><%= event.price_low %>-<%= event.price_high %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Nowe wydarzenie', new_event_path %>
