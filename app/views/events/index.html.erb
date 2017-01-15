@@ -8,7 +8,7 @@
     <th>Data wydarzenia</th>
     <th>Dla dorosłych</th>
     <th>Ceny</th>
-    <th>Liczba biletów</th>
+    <th>Sprzedane/Liczba biletów</th>
   </tr>
   </thead>
 
@@ -20,11 +20,15 @@
         <td><%= event.event_date %></td>
         <td><%= event.for_adults %></td>
         <td><%= event.price_low %>-<%= event.price_high %></td>
-        <td><%= event.tickets_no %></td>
+        <td><%= Ticket.where('event_id = ?', event.id).count %>/<%= event.tickets_no %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Nowe wydarzenie', new_event_path %>
+
+<div class="  btn-group">
+  <div class="btn btn-info"><%= link_to 'Nowe wydarzenie', new_event_path %></div>
+  <div class="btn btn-default"><%= link_to 'Sprzedane bilety', tickets_path %></div>
+</div>

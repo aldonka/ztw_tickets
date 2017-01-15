@@ -4,23 +4,23 @@
 
 <table class="table table-responsive">
   <thead>
-    <tr>
-      <th>Nazwa</th>
-      <th>Wydarzenie</th>
-      <th>Numer siedzenia</th>
-      <th>Adres</th>
-      <th>Cena</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th ></th>
-    </tr>
+  <tr>
+    <th>Nazwa</th>
+    <th>Wydarzenie</th>
+    <th>Miejsce</th>
+    <th>Adres</th>
+    <th>Cena</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @tickets.each do |ticket| %>
+  <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.name %></td>
-        <td><%= Event.find(ticket.event_id).artist %>, <%=Event.find(ticket.event_id).event_date %></td>
+        <td><%= Event.find(ticket.event_id).artist %>, <%= Event.find(ticket.event_id).event_date %></td>
         <td><%= ticket.seat_id_seq %></td>
         <td><%= ticket.address %></td>
         <td><%= ticket.price %></td>
@@ -30,15 +30,18 @@
           <span class="btn-group">
             <span class="btn btn-default"><%= link_to 'Show', ticket %></span>
             <span class="btn btn-warning"><%= link_to 'Edit', edit_ticket_path(ticket) %></span>
-            <span class="btn btn-danger"><%= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+            <span class="btn btn-danger"><%= link_to 'Destroy', ticket, method: :delete, data: {confirm: 'Are you sure?'} %></span>
           </span>
         </td>
         <td></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <br>
+<div class="  btn-group">
+  <div class="btn btn-info"><%= link_to 'Nowy bilet', new_ticket_path %></div>
+  <div class="btn btn-default"><%= link_to 'Wydarzenia', events_path %></div>
+</div>
 
-<%= link_to 'New Ticket', new_ticket_path %>
