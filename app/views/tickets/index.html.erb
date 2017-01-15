@@ -20,7 +20,7 @@
     <% @tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.name %></td>
-        <td><%= ticket.event_id %></td>
+        <td><%= Event.find(ticket.event_id).artist %>, <%=Event.find(ticket.event_id).event_date %></td>
         <td><%= ticket.seat_id_seq %></td>
         <td><%= ticket.address %></td>
         <td><%= ticket.price %></td>

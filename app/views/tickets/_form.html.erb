@@ -18,7 +18,7 @@
 
     <div class="field">
       <%= f.label :event_id %>
-      <%= f.text_field :event_id %>
+      <%= f.collection_select :event_id,  Event.where('event_date >= ?', Date.today), :id, :artist_and_date%>
     </div>
 
     <div class="field">
