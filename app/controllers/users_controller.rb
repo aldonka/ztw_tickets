@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user.role = 'admin'
 
     if @user.save
+      log_in @user
       redirect_to @user
     else
       render 'new'

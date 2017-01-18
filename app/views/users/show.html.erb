@@ -4,4 +4,7 @@
     <%= gravatar_for @user %>
     <%= @user.name %>, <%= @user.email %>
   </div>
+  <div class="panel-footer">
+    <%= link_to "Log out", logout_path, method: "delete" %>
+  </div>
 </div>

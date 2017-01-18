@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'users/show'
-
-  get '/signup', to: 'users#new'
+  get    '/signup',  to: 'users#new'
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
 
   resources :events, :only => [:index, :new, :create]
   resources :tickets
