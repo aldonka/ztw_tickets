@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title class="h1 text-info">Bilety</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title class="h1 text-info">Bilety</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <nav>
+      <% if logged_in? %>
+          <div class="navbar-brand">Witaj, <%= link_to current_user.name, user_path(current_user.id), style: "all: unset;" %> </div>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Bilety', tickets_path %></li>
+        <li><%= link_to 'Wydarzenia', events_path %></li>
+        <li><%= link_to "Home", static_pages_home_path %></li>
+        <% if logged_in? %>
+            <li><%= link_to "Wyloguj", logout_path, method: "delete" %></li>
+        <% end %>
+        <% if !logged_in? %>
+            <li><%= link_to "Zaloguj", login_path %></li>
+            <li class="active"><%= link_to "Zarejestruj", signup_path %></li>
+        <% end %>
+        <% if is_admin? %>
+            <li><%= link_to "Użytkownicy", users_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
+<div class="container" style="margin-top: 120px">
+  <%= yield %>
+</div>
+
+
+</body>
 </html>

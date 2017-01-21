@@ -16,4 +16,20 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+
+  def is_admin?
+    is_role 'admin'
+  end
+
+  def is_user?
+    is_role 'user'
+  end
+
+  private
+  def is_role(role)
+    if logged_in?
+      return current_user.role == role
+    end
+    return false
+  end
 end

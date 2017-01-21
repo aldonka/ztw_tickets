@@ -1,47 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bilety</h1>
+<div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h1>Bilety</h1>
+    </div>
+    <div class="panel-body">
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Wydarzenie</th>
+          <th>Miejsce</th>
+          <th>Adres</th>
+          <th>Cena</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th></th>
+        </tr>
+        </thead>
 
-<table class="table table-responsive">
-  <thead>
-  <tr>
-    <th>Nazwa</th>
-    <th>Wydarzenie</th>
-    <th>Miejsce</th>
-    <th>Adres</th>
-    <th>Cena</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th></th>
-  </tr>
-  </thead>
+        <tbody>
+        <% @tickets.each do |ticket| %>
+            <tr>
+              <td><%= ticket.name %></td>
+              <td><%= Event.find(ticket.event_id).artist %>, <%= Event.find(ticket.event_id).event_date %></td>
+              <td><%= ticket.seat_id_seq %></td>
+              <td><%= ticket.address %></td>
+              <td><%= ticket.price %></td>
+              <td><%= ticket.email_address %></td>
+              <td><%= ticket.phone %></td>
+              <td>
+          <span class="btn-group btn-group-sm">
+            <%= link_to 'Show', ticket, :class => "btn btn-sm btn-default" %>
+            <%= link_to 'Edit', edit_ticket_path(ticket), :class => "btn btn-sm btn-primary" %>
+            <%= link_to link_to 'Destroy', ticket, method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-sm btn-danger" %>
 
-  <tbody>
-  <% @tickets.each do |ticket| %>
-      <tr>
-        <td><%= ticket.name %></td>
-        <td><%= Event.find(ticket.event_id).artist %>, <%= Event.find(ticket.event_id).event_date %></td>
-        <td><%= ticket.seat_id_seq %></td>
-        <td><%= ticket.address %></td>
-        <td><%= ticket.price %></td>
-        <td><%= ticket.email_address %></td>
-        <td><%= ticket.phone %></td>
-        <td>
-          <span class="btn-group">
-            <span class="btn btn-default"><%= link_to 'Show', ticket %></span>
-            <span class="btn btn-warning"><%= link_to 'Edit', edit_ticket_path(ticket) %></span>
-            <span class="btn btn-danger"><%= link_to 'Destroy', ticket, method: :delete, data: {confirm: 'Are you sure?'} %></span>
           </span>
-        </td>
-        <td></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-<br>
-<div class="  btn-group">
-  <div class="btn btn-info"><%= link_to 'Nowy bilet', new_ticket_path %></div>
-  <div class="btn btn-default"><%= link_to 'Wydarzenia', events_path %></div>
+      <br>
+      <div class="btn-group">
+        <%= link_to 'Nowy bilet', new_ticket_path, :class => "btn btn-info" %>
+        <%= link_to 'Wydarzenia', events_path, :class => "btn btn-default" %>
+      </div>
+
+    </div>
+  </div>
 </div>
 

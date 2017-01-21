@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to url_for('/index.html')
+    redirect_to static_pages_home_path
   end
 end

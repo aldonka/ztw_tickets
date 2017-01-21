@@ -1,0 +1,18 @@
+<div class="container jumbotron">
+  <div class="row">
+    <h1 class="h1 text-info">Witaj na stronie z wydarzeniami.</h1>
+  </div>
+  <div class="row">
+
+    <h2 class="text-justify">Jeśli nie masz jeszcze konta w serwisie, możesz je utworzyć. Jeśli chcesz zakupić bilet
+      wejdź w zakładkę
+      <strong class="text-info">Bilety</strong>. By przeglądnąc aktualne wydarzenia wejdź w zakładkę <strong class="text-info">Wydarzenia</strong>.</h2>
+    <br/>
+  </div>
+  <% if !logged_in? %>
+      <div class="row">
+        <span class=""><%= link_to "Zaloguj", login_path, class: "btn btn-default col-md-2" %></span>
+        <span class=""><%= link_to "Zarejestruj się ", signup_path, class: "btn btn-info col-md-2" %></span>
+      </div>
+  <% end %>
+</div>

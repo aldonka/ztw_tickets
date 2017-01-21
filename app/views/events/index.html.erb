@@ -1,34 +1,42 @@
-<h1>Wydarzenia</h1>
+<div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h1>Wydarzenia</h1>
+    </div>
+    <div class="panel-body">
+      <table class="table table-responsive">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nazwa artysty</th>
+          <th>Data wydarzenia</th>
+          <th>Dla dorosłych</th>
+          <th>Ceny</th>
+          <th>Sprzedane/Liczba biletów</th>
+        </tr>
+        </thead>
 
-<table class="table table-responsive">
-  <thead>
-  <tr>
-    <th>Id</th>
-    <th>Nazwa artysty</th>
-    <th>Data wydarzenia</th>
-    <th>Dla dorosłych</th>
-    <th>Ceny</th>
-    <th>Sprzedane/Liczba biletów</th>
-  </tr>
-  </thead>
+        <tbody>
+        <% @events.each do |event| %>
+            <tr>
+              <td><%= event.id %></td>
+              <td><%= event.artist %></td>
+              <td><%= event.event_date %></td>
+              <td><%= event.for_adults %></td>
+              <td><%= event.price_low %>-<%= event.price_high %></td>
+              <td><%= Ticket.where('event_id = ?', event.id).count %>/<%= event.tickets_no %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-  <tbody>
-  <% @events.each do |event| %>
-      <tr>
-        <td><%= event.id %></td>
-        <td><%= event.artist %></td>
-        <td><%= event.event_date %></td>
-        <td><%= event.for_adults %></td>
-        <td><%= event.price_low %>-<%= event.price_high %></td>
-        <td><%= Ticket.where('event_id = ?', event.id).count %>/<%= event.tickets_no %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+      <br>
 
-<br>
+      <div class="  btn-group">
+        <div class="btn btn-info"><%= link_to 'Nowe wydarzenie', new_event_path %></div>
+        <div class="btn btn-default"><%= link_to 'Sprzedane bilety', tickets_path %></div>
+      </div>
+    </div>
 
-<div class="  btn-group">
-  <div class="btn btn-info"><%= link_to 'Nowe wydarzenie', new_event_path %></div>
-  <div class="btn btn-default"><%= link_to 'Sprzedane bilety', tickets_path %></div>
+  </div>
 </div>

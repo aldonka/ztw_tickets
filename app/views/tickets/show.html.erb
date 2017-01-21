@@ -1,45 +1,55 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Bilet : <%= @ticket.name %>
+    </div>
+    <div class="panel-body">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ticket.name %>
-</p>
+      <p>
+        <strong>Name:</strong>
+        <%= @ticket.name %>
+      </p>
 
-<p>
-  <strong>Wydarzenie:</strong>
-  <%= @ticket.event_id %>
-</p>
+      <p>
+        <strong>Wydarzenie:</strong>
+        <%= @ticket.event_id %>
+      </p>
 
 
-<p>
-  <strong>Seat id seq:</strong>
-  <%= @ticket.seat_id_seq %>
-</p>
+      <p>
+        <strong>Seat id seq:</strong>
+        <%= @ticket.seat_id_seq %>
+      </p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @ticket.address %>
-</p>
+      <p>
+        <strong>Address:</strong>
+        <%= @ticket.address %>
+      </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @ticket.price %>
-</p>
+      <p>
+        <strong>Price:</strong>
+        <%= @ticket.price %>
+      </p>
 
-<p>
-  <strong>Email address:</strong>
-  <%= @ticket.email_address %>
-</p>
+      <p>
+        <strong>Email address:</strong>
+        <%= @ticket.email_address %>
+      </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @ticket.phone %>
-</p>
-<div class="btn-group">
-  <div class="btn btn-warning">
-    <%= link_to 'Edit', edit_ticket_path(@ticket) %>
-  </div>
-  <div class="btn btn-default">
-    <%= link_to 'Back', tickets_path %>
+      <p>
+        <strong>Phone:</strong>
+        <%= @ticket.phone %>
+      </p>
+      <div class="btn-group">
+        <div class="btn btn-warning">
+          <%= link_to 'Edit', edit_ticket_path(@ticket) %>
+        </div>
+        <div class="btn btn-default">
+          <%= link_to 'Back', tickets_path %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
