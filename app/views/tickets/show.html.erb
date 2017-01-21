@@ -1,55 +1,64 @@
 <div class="container">
   <div class="panel panel-info">
-    <div class="panel-heading">
-      Bilet : <%= @ticket.name %>
-    </div>
-    <div class="panel-body">
-      <p id="notice"><%= notice %></p>
-
-      <p>
-        <strong>Name:</strong>
-        <%= @ticket.name %>
-      </p>
-
-      <p>
-        <strong>Wydarzenie:</strong>
-        <%= @ticket.event_id %>
-      </p>
-
-
-      <p>
-        <strong>Seat id seq:</strong>
-        <%= @ticket.seat_id_seq %>
-      </p>
-
-      <p>
-        <strong>Address:</strong>
-        <%= @ticket.address %>
-      </p>
-
-      <p>
-        <strong>Price:</strong>
-        <%= @ticket.price %>
-      </p>
-
-      <p>
-        <strong>Email address:</strong>
-        <%= @ticket.email_address %>
-      </p>
-
-      <p>
-        <strong>Phone:</strong>
-        <%= @ticket.phone %>
-      </p>
-      <div class="btn-group">
-        <div class="btn btn-warning">
-          <%= link_to 'Edit', edit_ticket_path(@ticket) %>
+    <% if @ticket.nil? %>
+        <div class="panel-heading">
+          <h2 class="h2"> Wolny bilet</h2>
         </div>
-        <div class="btn btn-default">
-          <%= link_to 'Back', tickets_path %>
+        <div class=" text-info panel-body">
+          <h3>Bilet o podanym id jest wolny</h3>
         </div>
-      </div>
+    <% else %>
+        <div class="panel-heading">
+          <h2 class="h2">Bilet : <%= @ticket.name %></h2>
+        </div>
+        <div class="panel-body">
+          <p id="notice"><%= notice %></p>
 
-    </div>
+          <div class="col-md-6">
+            <h3>
+              <strong>Wydarzenie:</strong>
+              <%= (Event.find @ticket.event_id).artist %>, <%= (Event.find @ticket.event_id).event_date %>
+            </h3>
+            <h3>
+              <strong>Nazwa:</strong>
+              <%= @ticket.name %>
+            </h3>
+            <h3>
+              <strong>Numer siedzenia:</strong>
+              <%= @ticket.seat_id_seq %>
+            </h3>
+          </div>
+          <div class="col-md-6">
+            <h3>
+              <strong>Adres:</strong>
+              <%= @ticket.address %>
+            </h3>
+            <h3>
+              <strong>Cena:</strong>
+              <%= @ticket.price %>
+            </h3>
+            <h3>
+              <strong>Email:</strong>
+              <%= @ticket.email_address %>
+            </h3>
+            <h3>
+              <strong>Numer telefonu:</strong>
+              <%= @ticket.phone %>
+            </h3>
+          </div>
+
+          <div class="btn-group">
+            <% if logged_in? %>
+                <div class="btn btn-warning">
+                  <%= link_to 'Edit', edit_ticket_path(@ticket) %>
+                </div>
+                <div class="btn btn-default">
+                  <%= link_to 'Back', tickets_path %>
+                </div>
+                </div>
+            <% end %>
+
+            </div>
+    <% end %>
   </div>
 </div>

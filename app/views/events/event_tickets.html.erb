@@ -1,0 +1,52 @@
+<div class="container">
+  <% if @tickets.nil? || @event.nil? %>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h2 class="h2">Brak wydarzenia</h2>
+        </div>
+        <div class=" text-info panel-body">
+          <h3>Wydarzenie o podanym id nie istnieje</h3>
+        </div>
+      </div>
+  <% else %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <div class="row">
+            <h2 class="h2"><strong>Wydarzenie:</strong>
+              <%= @event.artist %>, <%= @event.event_date %></h2>
+            <%= link_to 'Wydarzenia', events_path, class: 'btn btn-warning' %>
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="table table-responsive">
+            <thead>
+            <tr>
+              <th>Nazwa</th>
+              <th>Miejsce</th>
+              <th>Adres</th>
+              <th>Cena</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% if @tickets.size > 0 %>
+                <% @tickets.each do |ticket| %>
+                    <tr>
+                      <td><%= ticket.name %></td>
+                      <td><%= ticket.seat_id_seq %></td>
+                      <td><%= ticket.address %></td>
+                      <td><%= ticket.price %></td>
+                      <td><%= ticket.email_address %></td>
+                      <td><%= ticket.phone %></td>
+                    </tr>
+                <% end %>
+            <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+  <% end %>
+</div>

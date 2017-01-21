@@ -4,12 +4,27 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    if is_admin?
+      @tickets = Ticket.all
+    else
+      respond_to do |format|
+        format.html { redirect_to static_pages_home_path, notice: 'Nie posiadasz odpowiednich praw.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /tickets/1
   # GET /tickets/1.json
   def show
+    if is_admin?
+      set_ticket
+    else
+      respond_to do |format|
+        format.html { redirect_to static_pages_home_path, notice: 'Nie posiadasz odpowiednich praw.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # GET /tickets/new
@@ -41,7 +56,7 @@ class TicketsController < ApplicationController
   def update
     respond_to do |format|
       if @ticket.update(ticket_params)
-        format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
+        format.html { redirect_to @ticket, notice: 'Bilet został zaktualizowany.' }
         format.json { render :show, status: :ok, location: @ticket }
       else
         format.html { render :edit }
@@ -61,13 +76,17 @@ class TicketsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    begin
       @ticket = Ticket.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      @event = nil
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_params
-      params.require(:ticket).permit(:name, :seat_id_seq, :address, :price, :email_address, :phone, :event_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_params
+    params.require(:ticket).permit(:name, :seat_id_seq, :address, :price, :email_address, :phone, :event_id)
+  end
 end

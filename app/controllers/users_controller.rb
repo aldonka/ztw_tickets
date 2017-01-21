@@ -19,7 +19,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    if logged_in?
+      @user = User.find(current_user.id)
+    else
+      respond_to do |format|
+        format.html { redirect_to static_pages_home_path, notice: 'Proszę się zalogować, by mieć dostęp do konta.' }
+        format.json { head :no_content }
+      end
+    end
+
   end
 
   private

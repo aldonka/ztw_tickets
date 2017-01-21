@@ -1,4 +1,11 @@
 <div class="container jumbotron">
+
+  <% if notice %>
+      <div id="notice" class="panel panel-warning">
+        <div class="panel-heading">Ostrzeżenie</div>
+        <div class="panel-body text-warning"><%= notice %></div>
+      </div>
+  <% end %>
   <div class="row">
     <h1 class="h1 text-info">Witaj na stronie z wydarzeniami.</h1>
   </div>
@@ -6,7 +13,8 @@
 
     <h2 class="text-justify">Jeśli nie masz jeszcze konta w serwisie, możesz je utworzyć. Jeśli chcesz zakupić bilet
       wejdź w zakładkę
-      <strong class="text-info">Bilety</strong>. By przeglądnąc aktualne wydarzenia wejdź w zakładkę <strong class="text-info">Wydarzenia</strong>.</h2>
+      <strong class="text-info">Bilety</strong>. By przeglądnąc aktualne wydarzenia wejdź w zakładkę
+      <strong class="text-info">Wydarzenia</strong>.</h2>
     <br/>
   </div>
   <% if !logged_in? %>

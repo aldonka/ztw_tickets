@@ -13,6 +13,7 @@
           <th>Dla dorosłych</th>
           <th>Ceny</th>
           <th>Sprzedane/Liczba biletów</th>
+
         </tr>
         </thead>
 
@@ -25,17 +26,28 @@
               <td><%= event.for_adults %></td>
               <td><%= event.price_low %>-<%= event.price_high %></td>
               <td><%= Ticket.where('event_id = ?', event.id).count %>/<%= event.tickets_no %></td>
+              <% if is_admin? %>
+                  <td>
+          <span class="btn-group btn-group-sm">
+            <% if Ticket.where('event_id = ?', event.id).count > 0 %>
+            <%= link_to 'Sprzedane bilety', url_for('events/'+ event.id.to_s + '/tickets'), :class => "btn btn-sm btn-default" %>
+            <% end %>
+            <%= link_to 'Edytuj', edit_event_path(event), :class => "btn btn-sm btn-primary" %>
+          </span>
+                  </td>
+              <% end %>
             </tr>
         <% end %>
         </tbody>
       </table>
 
       <br>
-
-      <div class="  btn-group">
-        <div class="btn btn-info"><%= link_to 'Nowe wydarzenie', new_event_path %></div>
-        <div class="btn btn-default"><%= link_to 'Sprzedane bilety', tickets_path %></div>
-      </div>
+      <% if is_admin? %>
+          <div class="  btn-group">
+            <div class="btn btn-info"><%= link_to 'Nowe wydarzenie', new_event_path %></div>
+            <div class="btn btn-default"><%= link_to 'Sprzedane bilety', tickets_path %></div>
+          </div>
+      <% end %>
     </div>
 
   </div>
