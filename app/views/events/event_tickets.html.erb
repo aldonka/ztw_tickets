@@ -12,9 +12,11 @@
       <div class="panel panel-info">
         <div class="panel-heading">
           <div class="row">
-            <h2 class="h2"><strong>Wydarzenie:</strong>
-              <%= @event.artist %>, <%= @event.event_date %></h2>
-            <%= link_to 'Wydarzenia', events_path, class: 'btn btn-warning' %>
+            <h2 class="h2" style="margin-left:20px"><strong> Wydarzenie:</strong>
+              <%= @event.artist %>, <%= @event.event_date %>
+              <%= link_to 'Wydarzenia', events_path, class: 'btn btn-info pull-right', style: 'margin-right: 20px;' %>
+            </h2>
+
           </div>
         </div>
         <div class="panel-body">

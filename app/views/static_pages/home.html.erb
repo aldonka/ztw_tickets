@@ -17,9 +17,16 @@
       <strong class="text-info">Wydarzenia</strong>.</h2>
     <br/>
   </div>
+  <div class="row col-md-12">
+    <div class="pull-right" style="margin-bottom: 40px;">
+      <img class="col-md-3 img-responsive" src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/announcement-icon.png" alt="img-event"/>
+      <img class=" col-md-3 img-responsive" src="https://tickera-wpsalad.netdna-ssl.com/wp-content/themes/tickera/style/img/freebies/icons/events/6.png?x55687" alt="img-event"/>
+      <img class=" col-md-3 img-responsive" src="https://tickera-wpsalad.netdna-ssl.com/wp-content/themes/tickera/style/img/freebies/icons/events/4.png?x55687" alt="img-event"/>
+    </div>
+  </div>
   <% if !logged_in? %>
       <div class="row">
-        <span class=""><%= link_to "Zaloguj", login_path, class: "btn btn-default col-md-2" %></span>
+        <span class=""><%= link_to "Zaloguj się", login_path, class: "btn btn-default col-md-2" %></span>
         <span class=""><%= link_to "Zarejestruj się ", signup_path, class: "btn btn-info col-md-2" %></span>
       </div>
   <% end %>
