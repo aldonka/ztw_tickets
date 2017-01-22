@@ -4,9 +4,9 @@ class Event < ApplicationRecord
   validates :tickets_no, :presence => true
   validates :tickets_no, numericality: {only_integer: true, greater_than: 0, message: "Nie może być mniej niż 1 bilet w wydarzeniu"}
   validates :price_high, :presence => true
-  validates :price_high, numericality: {only_integer: true, greater_than_or_equal_to: :price_low, message: "Cena nie może być mniejsza od najniższej ceny"}
+  validates :price_high, numericality: {greater_than_or_equal_to: :price_low, message: "Cena nie może być mniejsza od najniższej ceny"}
   validates :price_low, :presence => true
-  validates :price_low, numericality: {only_integer: true, greater_than_or_equal_to: 0, message: "Cena nie może być mniejsza od 0 zł"}
+  validates :price_low, numericality: { greater_than_or_equal_to: 0, message: "Cena nie może być mniejsza od 0 zł"}
   validates :event_date, :presence => true
 #  validate :valid_date?
   validate :event_date_cannot_be_in_the_past
