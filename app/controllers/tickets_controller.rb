@@ -17,14 +17,7 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   # GET /tickets/1.json
   def show
-    if is_admin?
       set_ticket
-    else
-      respond_to do |format|
-        format.html { redirect_to static_pages_home_path, notice: 'Nie posiadasz odpowiednich praw.' }
-        format.json { head :no_content }
-      end
-    end
   end
 
   # GET /tickets/new
