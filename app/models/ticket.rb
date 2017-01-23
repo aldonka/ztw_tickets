@@ -28,4 +28,12 @@ class Ticket < ApplicationRecord
       errors.add(:price, 'Cena musi zawierać się w przedziale %d - %d' % [event.price_low, event.price_high])
     end
   end
+
+  def price_arr
+    event = Event.find(event_id)
+    if event.event_date == Date.today
+      event.price_high = 1.2 * event.price_high
+    end
+    return (event.price_low..event.price_high).step(70)
+  end
 end

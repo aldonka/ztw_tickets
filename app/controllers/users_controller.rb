@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   def show
     if logged_in?
       @user = User.find(current_user.id)
+      @tickets = Ticket.where('email_address = ?', @user.email).order(:event_id)
     else
       respond_to do |format|
         format.html { redirect_to static_pages_home_path, notice: 'Proszę się zalogować, by mieć dostęp do konta.' }

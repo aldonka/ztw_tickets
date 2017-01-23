@@ -1,8 +1,40 @@
 <div class="panel panel-info">
-  <div class="panel-heading">Użytkownik</div>
+  <div class="panel-heading"><h2>Użytkownik</h2></div>
   <div class="panel-body">
     <%= gravatar_for @user %>
     <%= @user.name %>, <%= @user.email %>
+    <% if @tickets %>
+        <h3>Twoje bilety</h3>
+        <div class="row">
+          <table class="table table-responsive">
+            <thead>
+            <tr>
+              <th>Bilet</th>
+              <th>Miejsce</th>
+              <th>Data</th>
+              <th>Cena</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @tickets.each do |ticket| %>
+                <tr>
+                  <td><%= Event.find(ticket.event_id).artist %></td>
+                  <td><%= ticket.seat_id_seq %></td>
+                  <td><%= Event.find(ticket.event_id).event_date %></td>
+                  <td><%= ticket.price %></td>
+                  <td>
+          <span class="btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_ticket_path(ticket), :class => "btn btn-sm btn-primary" %>
+            <%= link_to link_to 'Destroy', ticket, method: :delete, data: {confirm: 'Are you sure?'}, :class => "btn btn-sm btn-danger" %>
+          </span>
+                  </td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+    <% end %>
   </div>
   <div class="panel-footer">
     <%= link_to "Log out", logout_path, method: "delete" %>
